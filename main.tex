@@ -1,0 +1,1082 @@
+\documentclass{book}
+\title{Python入门与工程应用}
+\author{汪昱帆}
+\date{2022/12/4}
+\usepackage[UTF8, scheme = plain]{ctex}
+\usepackage{listings}
+\usepackage{indentfirst}
+\renewcommand*{\contentsname}{目\quad 录}
+\renewcommand*{\chaptername}{}
+\renewcommand{\chaptermark}[1]{\markboth{第\, \thechapter\, 章\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}{}}
+\setlength{\parindent}{2em}
+\begin{document}
+\maketitle
+\tableofcontents
+\setcounter{part}{-1}
+\setcounter{chapter}{0}
+\part{阅读建议}
+本书涵盖了Python的基础、算法、工程方面的内容，涵盖面广
+
+
+如果读者是Python的初学者，请先将语言基础读完
+
+
+如果读者已经读完语言基础或不是Python的初学者，请按照自己的兴趣进行阅读，
+等到有水平后，再进行字典式阅读。
+
+
+希望读者多做实践，建议将书中所有代码全部上机实践
+
+% \resizebox{\textwidth}{!}{
+
+% }
+\part{语言基础}
+\chapter{初识Python}
+\indent Python是一个编程语言，相信有些读者学过 \verb|C++| 等其他编程语言
+
+
+Python的运用范围很广，可以用来做网络爬虫、科学计算、软件开发等
+
+
+读者肯定用过软件，软件就是用编程语言做的
+
+\section{编程语言与自然语言的区别}
+
+\indent 自然语言不是很严格，比如：\verb|南京路到了|，这句话并不严谨，南京路究竟到哪了？但是编程语言十分严谨，比如，你如果忘写了一个右括号，计算机是看不出来的，程序就会无法运行
+
+
+所以读者在编写程序时，一定要注意语法，
+自然语言的语法并没有很严格的要求，
+例如英语里将 \verb|like playing| 
+写成了 \verb|like play| ，
+在与外国人正常交流时，对方不会故意纠错，
+但是将 \verb|print("Hello, world")| 
+写成了 \verb|print["Hello, world"]| 
+是会报错的
+
+\section{Python的特点}
+
+\begin{enumerate}
+\item 优点
+    \begin{itemize}   
+        \item 十分简洁， C++ 需要用$100$行，Python可能$10$行就解决了
+        \item 生态广， Pypi 里成千上万的包
+        \item 资源多，Python已经有大量的教程，书籍
+        \item ……
+    \end{itemize}
+\item 缺点
+    \begin{itemize}
+        \item 性能有待改进
+        \item 不接近底层
+        \item 不能直接以可执行文件发布
+        \item ……
+    \end{itemize}
+\end{enumerate}
+
+Python的环境配置在这里并不进行介绍，
+请读者使用
+搜索引擎搜索\verb|Python下载|
+
+
+还建议读者搜索\verb|Pycharm|的下载配置，在以后做大型项目时，\verb|Pycharm|将成为开发的得力工具！
+\chapter{第一个程序}
+\section{代码}
+\begin{verbatim}
+# 示例2-1 Hello World
+print("Hello, world")
+\end{verbatim}
+\footnote{\# 号是注释，后面的内容将不被Python识别，多行注释可以使用一对三引号，像""""""里就可以放多行注释}
+\indent 请保存为\verb|HelloWorld.py|，双击运行，如果读者使用
+的是Pycharm，请右键点击\verb|Run|
+
+输出如下
+
+\begin{verbatim}
+Hello World
+\end{verbatim}
+
+其中，双引号可以换成单引号，双引号内可以填入任何内容
+
+\begin{verbatim}
+# 示例2-2 你好世界
+print('你好世界')
+\end{verbatim}
+
+输出如下：
+\begin{verbatim}
+# 示例2-2 你好世界
+print('你好世界')
+\end{verbatim}
+
+甚至可以输入一个数字
+\begin{verbatim}
+# 示例2-3 12345
+print(12345)
+\end{verbatim}
+
+输出如下：
+\begin{verbatim}
+12345
+\end{verbatim}
+
+读者也可以尝试修改单引号内的文本
+
+初学者在输入代码运行时，可能会犯以下错误导致无法运行
+
+\begin{verbatim}
+File "C:\Users\S.X.Y\Desktop\Python入门与工程应用\代码仓库\第二章 第一个程序\2-1 Hello World.py", line 1
+    print("Hello World“）
+                            ^
+SyntaxError: EOL while scanning string literal
+
+\end{verbatim}
+
+或是
+\begin{verbatim}
+    File "C:\Users\S.X.Y\Desktop\Python入门与工程应用\代码仓库\第二章 第一个程序\2-1 Hello World.py", line 1
+    print("Hello World"）
+                       ^
+SyntaxError: invalid character '）' (U+FF09)
+\end{verbatim}
+等等问题
+
+
+如果程序没有执行成功，请看\verb|2.3|
+
+\section{第一个程序详细解析}
+\indent 还记得\verb|2.1|的\verb|print(...)|么
+
+\verb|print|在Python中是一个\verb|函数|
+
+什么是函数呢？
+
+相信读者学过数学当中的函数，比如
+$f(x) = x^2$，则$f(5) = 25$，
+Python中的函数与数学函数原理类似
+\footnote{其实不管哪个编程语言的函数，原理都和数学函数类似}
+\verb|print|是一个有参数的函数，就像$f(x)$中的参数$x$，在函数调用时，
+必须传入参数，Python中参数是有类型的，
+
+\verb|示例2-1|中，\verb|"Hello World"|是一个\verb|字符串|类型，
+\verb|示例2-2|的\verb|'你好世界'|，也是字符串类型
+，然而\verb|示例2-3|中，$12345$是一个整数类型，所以\verb|print|
+是一个不限参数类型的函数
+
+\verb|print|函数的作用是将参数的\textbf{值}
+\footnote{假如参数是1+1，那么会打印2，因为1+1值为2}
+原封不动的打印出来
+
+留给读者一个思考题：假如说我键入代码\verb|print("1+1")|，
+会出现什么有趣的结果呢？建议读者上机测试一下。这也是初学者最容易
+错的地方
+
+\section{Python基础语法规范}
+
+\indent 如果说读者没有成功运行\verb|示例2-1|，
+那么说明读者没有正确键入代码
+
+
+请确保您已经切换到了英文半角输入法，否则Python将无法识别
+
+
+例如\verb|print（"“)|是不行的，这行代码出现
+了两个中文符号——左括号以及右括号，会导致无法运行
+
+
+其次，Python是大小写敏感的，例如，不可以将
+\verb|print("ILOVEPYTHON")|写成
+\verb|PRINT("ILOVEPYTHON")|，Python会不知道
+PRINT函数到底是什么
+
+
+\chapter{变量}
+\indent 在玩游戏的时候，每一个任务都会有一个属性值
+
+
+比如，血量，能力，等级等
+
+
+这些都可以用变量表示
+
+
+例如：变量血量值为100，能力值为100，等级值为3
+\section{变量创建}
+\indent 知道了变量的基本概念，我们来动手试着创建一个变量
+
+
+变量的创建语法是：\verb|标识符 = 变量值|
+
+
+注意，这个=\textbf{不是数学里的等号}，这里的意思是赋值
+数学里的等号则表示相等关系
+
+
+比如，\verb|a = 2|是合法的，\verb|2 = a|是非法的
+
+
+变量值可以是任何数据类型：可以是字符串，数字……
+
+
+变量值也可以是变量，这种成为\verb|引用|
+
+
+比如如下变量命名命令
+
+
+\begin{verbatim}
+alpha = 5
+beta = alpha
+\end{verbatim}
+
+
+\verb|其中标识符|是有命名规则的，有\verb|强制|，就是语法层面的，有\verb|建议|，是为了让代码更易懂
+\section{标识符强制命名规范}
+标识符就是变量的名字，然而标识符是有命名规范的
+
+
+有以下几点
+
+\begin{itemize}
+    \item 不能含有\verb|字母，下划线，中文，数字以外的字符|
+    \item 开头不能为\verb|数字|
+    \item 不能含有空格
+\end{itemize}
+
+你可能想问，中文也可以？没错！中文也可以，像代码\verb|你好世界 = "Hello World"|这样的代码
+也是合法的，可运行的。并且，除非\textbf{开发国际项目}或者有特别的编码问题，笔者是鼓励读者使用
+中文标识符的。
+\section{标识符建议命名规范}
+为了让代码的可读性\footnote{意思是让代码更容易让他人读懂}更上一层楼，一般要将代码写的简单易懂，除非说你的代码不给别人看
+
+
+所以像\verb|a, b, c|这样的标识符是禁忌，好的标识符例如\verb|name, age|，一看就知道含义
+
+
+以下是笔者总结出来的标识符命名规范：
+\begin{itemize}
+    \item 表达数据或函数时，将变量存储数据内容翻译成英文或缩写，小写写出，如有多个单词，用下划线隔开，例如\verb|alert_message|就是一个不错的标识符
+    \item 表达类名时，将类的作用首字母大写，例如\verb|AlertMessage|
+\end{itemize}
+
+在项目中，最好遵守这两条规则，因为这是在计算机界公认的规则
+\section{input函数}
+\indent \verb|print|函数是用于将参数原封不动的输出，\verb|input|则相反，将输入的内容原封不动的赋值给变量
+
+
+\verb|input|函数有一个参数，表示提示文字，还有一个返回值，会返回一个字符串，注意，是\textbf{字符串}，
+假如我输入\verb|1+1|，变量值为\verb|"1+1"|，注意，不是2，\verb|"1+1"|是字符串
+
+
+
+
+
+做一个有趣的例子：
+\begin{verbatim}
+# 示例3-1 你的名字是什么？
+name = input("你的名字是：")
+print("原来你的名字是：", name)
+\end{verbatim}
+\footnote{print函数是可以输出多个参数的，比如print("Hello", "World")是合法的}
+
+
+输出如下
+\begin{verbatim}
+你的名字是：小汪
+原来你的名字是： 小汪
+\end{verbatim}
+
+至于为什么可以使用\verb|print(name)|这种句法，是因为\verb|name|已经成为标识符了，只要
+Python看到\verb|name|，就会替换成\verb|小汪|
+
+
+\section{变量修改}
+\indent 变量是可以修改的
+
+
+比如，我定义了变量\verb|a = 2|，我想把变量\verb|a|改为$3$，只需输入\verb|a = 3|
+
+
+\begin{verbatim}
+# 示例3-2 你就叫小汪！
+name = input("你叫什么名字：")
+print("原来你叫：",name)
+name = "小汪"
+print("我不管，你叫",name)
+    
+\end{verbatim}
+
+在打印\verb|原来你叫：name|后，将\verb|name|改为\verb|小汪|，所以第四行代码输出：\verb|我不管，你叫小汪|
+
+
+输出如下：
+\begin{verbatim}
+你叫什么名字：小钱
+原来你叫： 小钱
+我不管，你叫 小汪
+\end{verbatim}
+\section{删除变量}
+\indent 当变量太多的时候，变量没有用是要删除空间释放内存的
+
+
+删除使用命令\verb|del|，del是一个关键字\footnote{关键字就是Python预留好的“函数”，但使用语法各不相同，以后会接触30来个关键字}
+语法是\verb|del 变量|，比如，删除\verb|name|变量，代码为\verb|del name|
+
+
+这里给大家一个示例
+
+
+\begin{verbatim}
+>>> # 示例3-3 变量的消失.txt
+>>> name = '小汪'
+>>> print(name)
+小汪
+>>> del name # 删除变量name
+>>> print(name)
+Traceback (most recent call last):
+  File "<pyshell#3>", line 1, in <module>
+    print(name)
+NameError: name 'name' is not defined
+\end{verbatim}
+
+\verb|NameError|意为找不到变量。\verb|name|已被删除，当然找不到。
+
+变量删除我就不再赘述，在一般应用场景中，我们可能不怎么会用到变量删除
+
+\section{示例-游戏属性打印}
+\indent 这一节我们将制作第一个项目——游戏属性打印
+
+
+这是一个很简单的项目，希望大家将代码在文件中敲一遍，运行一遍。
+
+
+\subsection{模型解析}
+\indent 不管多么简单的项目，都需要对其策略进行解析
+
+
+游戏属性如下：
+\begin{itemize}
+    \item 血量
+    \item 攻击能力
+    \item 等级
+\end{itemize}
+这三个变量都是数字
+
+
+变量分别命名为：\verb|blood, attack, grade|
+
+
+模型已经分析完毕，接下来将开始代码制作
+\subsection{变量读取}
+\indent 接着就要开始读取变量了
+
+
+前面说过，可以使用\verb|input|函数，接下来会使用\verb|input|函数读取变量
+
+
+\begin{verbatim}
+blood = input("输入血量：") # input可以有提示信息
+attack = input("输入攻击能力：")
+grade = input("输入等级：")
+\end{verbatim}
+
+现在已经可以读取变量了！
+
+
+\subsection{变量输出}
+
+\indent 读取完了变量，要输出
+
+
+这里使用\verb|print|函数，前文说过\verb|print|函数可以有多个值，会分别输出
+
+
+接下来是打印部分代码
+\begin{verbatim}
+print("血量为：", blood)
+print("攻击能力为：", attack)
+print("等级为：", grade)
+\end{verbatim}
+
+\subsection{完整代码}
+\indent 到这一步，我们已经完成了游戏属性打印项目
+
+
+完整代码：
+\begin{verbatim}
+# 示例3-3 游戏属性打印
+blood = input("输入血量：") # input可以有提示信息
+attack = input("输入攻击能力：")
+grade = input("输入等级：")
+print("血量为：", blood)
+print("攻击能力为：", attack)
+print("等级为：", grade)
+\end{verbatim}
+
+输出如下：
+\begin{verbatim}
+输入血量：100
+输入攻击能力：20
+输入等级：3
+血量为： 100
+攻击能力为： 20
+等级为： 3
+\end{verbatim}
+恭喜你，你已经完成了第一个项目！
+\chapter{基本数据类型}
+\indent 之前笔者简单介绍了\verb|数字|以及\verb|字符串|，Python
+肯定不止这些数据类型，还有\verb|浮点型|，\verb|复数型|，\verb|复合类型|
+等
+
+
+这一章为读者介绍一下Python内置的数据类型
+\section{整数型}
+\indent 整数型就是之前说的\verb|数字型|，在Python里叫\verb|int|类型
+整数型可以直接使用数字表示，也可以使用\verb|int|类来表示
+
+
+在\verb|示例3-3|中，笔者使用了3个\verb|int|类型的数据，所以，
+\verb|int|型可以这样表示
+
+
+\begin{verbatim}
+alpha = 2
+\end{verbatim}
+或者，也可以使用\verb|int|类\footnote{类的实例化行为有点像函数，后面会详细介绍类}
+\begin{verbatim}
+alpha = int(2)
+\end{verbatim}
+上面的两行代码效果等价
+
+
+或者，也可以传入其他类型作为参数，这属于\textbf{强制类型转换}
+\section{浮点型}
+\indent 浮点型，其实就是小数，在Python中，浮点型照样有两种表达形式，
+浮点型称为\verb|float|
+
+
+
+比如如下代码：
+\begin{verbatim}
+beta = 2.0
+\end{verbatim}
+\begin{verbatim}
+beta = float(2)
+# 会转换为float型
+\end{verbatim}
+
+\subsection{浮点数的易错点}
+\indent 在有些考试中，可能会考你这样的题目
+\begin{verbatim}
+beta = float(2)
+beta = ?
+A.0     B.2     C.2.0   D.2.00
+\end{verbatim}
+不少同学会选择\verb|B|，\textbf{但是，编程语言中，float型不和int型相等}
+除非说是编程题或者其他类型的题目，正确答案应该是\verb|C|
+\subsection{杂谈-无穷大}
+\indent 很多编程语言中，都没有无穷大
+这种数据类型，但是\verb|Python|提供了！
+我们可以通过\verb|float| API去使用这种
+数据类型
+
+
+表示方法为：\verb|float("inf")|，注意：
+
+
+一定要带入float类，不可以写成\verb|"inf"|
+或者\verb|"inf"|
+
+
+以下是一个无穷大类型的使用示例
+
+
+\begin{verbatim}
+>>> alpha = float("inf")
+>>> print(alpha)
+inf
+>>> print(alpha + 2.0)
+inf
+>>> alpha - alpha
+nan
+>>> alpha - 2.0
+inf
+    
+\end{verbatim}
+这基本符合了数学里无穷大的定义
+\section{字符型}
+\indent 这里终于可以畅聊字符串了
+
+
+字符串也可以使用\verb|str|表示
+
+
+比如：
+\begin{verbatim}
+alpha = "ILOVEPYTHON"
+alpha = 'ILOVEPYTHON'
+alpha = str("ILOVEPYTHON")
+alpha = str('ILOVEPYTHON')
+# 以上四行代码效果等价
+\end{verbatim}
+\subsection{易错点}
+\indent 这是\textbf{所有计算机生可能犯过的错误}
+
+
+比如以下题目：
+\begin{verbatim}
+以下代码：
+print("1+1")
+输出结果是：?
+A.2   B.1+1     C.3     D.0
+\end{verbatim}
+很多人都会选\verb|B|，但是，字符串只会最原生态的存储信息，就算是一个式子\verb|"1+1"|，也会打印出\verb|1+1|，只有去掉
+字符串，变成$1+1$，成为\textbf{表达式}，才会计算结果输出$2$
+
+
+字符串其实也不是完全原生态存储信息，会有几个\textbf{特殊}符号，会在下一节介绍
+
+
+\subsection{特殊符号}
+\indent Python中有很多特殊符号，比如\verb|\r|换行，\verb|\b|推格等，特殊符号会在此节介绍
+
+\subsubsection{换行符n}
+\indent 换行符\verb|\n|可以实现换行功能
+
+
+使用方法如下
+
+
+\begin{verbatim}
+>>> print('这是换\n行\n符\n')
+这是换
+行
+符
+\end{verbatim}
+
+\subsubsection{换行符r}
+
+\indent 换行符\verb|\r|也是换行符，但会回到行首，但请注意，这个换行符只在Windows操作系统下有效。
+
+
+使用方法如下：
+
+
+源代码：
+
+\begin{verbatim}
+print("a\rb")
+\end{verbatim}
+
+输出：
+\begin{verbatim}
+b
+\end{verbatim}
+
+需要注意的是，\verb|\r|换行符在Python的解释器中不会起到任何作用
+
+\subsection{原始字符串r}
+\indent 这个不是换行符，使用方法是在字符串前加一个\verb|r|，像\verb|r'Hello Wang'|就是原始字符串，
+在文件读取的时候十分有用，因为文件路径中的反斜杠会使Python报错，加上\verb|r|以后，就不会有这种情况
+出现，这里不会很详细的介绍原始字符串，以后会慢慢接触。
+\section{复数型}
+\indent 在科学计算中，经常要用到复数，很多语言都没有提供复数，Python却提供了。
+
+复数在数学的表达方式为 $a + bi$，其中 $a$ 是实部，$b$ 是虚部，$i$是虚数单位
+
+
+复数这里也不做详细介绍
+
+
+\begin{verbatim}
+>>> 3+9j # 实部为3，虚部为9
+(3+9j)
+>>> (3 + 9j) + (9 + 3j)
+(12+12j)
+\end{verbatim}
+\chapter{计算}
+\indent 计算是编程语言最重要的部分之一
+，Python几乎各个数据类型都可以完成计算，
+Python还有二进制的位运算。本章将为读者介绍
+Python中的运算
+\section{整数和浮点型的运算}
+\indent 之前和读者提及的数字型，严格意义上讲叫整数，生活中经常提及到的小数，在Python叫浮点数
+\subsection{加减整除}
+\indent 加减乘除可以说最简单的运算了，不过Python的浮点数与整数运算有一点坑。
+
+
+Python的加减乘除就是用加号减号乘号除号完成运算，例如一下案例
+\begin{verbatim}
+>>> 3 + 1
+4
+>>> 5 - 2
+3
+>>> 11 * 11
+121
+>>> 11 / 11
+1.0
+\end{verbatim}
+需要注意，Python中除法得出的永远是浮点数，整数和浮点数的运算也会得出类似结果
+\begin{verbatim}
+>>> 3.0 + 1
+4.0
+>>> 5.0 - 2
+3.0
+>>> 11 * 11.0
+121.0
+>>> 11.0 / 11
+1.0
+\end{verbatim}
+
+Python的除法提供了整除这种运算符，将在下一节介绍。
+\subsection{取余与整除}
+\indent 整除其实就是将除法所得结果的小数部分舍去，如以下案例
+
+
+\begin{verbatim}
+>>> 3 // 2
+1
+>>> 5 // 2
+2
+\end{verbatim}
+但需要注意，整除对浮点数是无效的
+
+\begin{verbatim}
+>>> 3.0 // 2
+1.5
+\end{verbatim}
+
+
+取余的代码如下：
+\begin{verbatim}
+>>> 10 % 3
+1
+\end{verbatim}
+
+取余就等于数学里的 $mod$ 算子
+\subsection{自增运算符}
+\indent 前面讲了变量，变量可以赋值，可以计算，变量还可以自赋值
+
+
+比如，有一个变量\verb|wang|，它的值为$1.1$，自赋值以后，它就可以通过自赋值改变自身值
+
+
+\begin{verbatim}
+>>> wang = 1.1
+>>> wang = wang + 1
+>>> print(wang)
+2.1
+\end{verbatim}
+
+从示例可以看到，\verb|wang|加了$1$后赋给了\verb|wang|，Python有这种专门的运算符叫\textbf{自增运算符}
+
+\begin{verbatim}
+>>> alpha = 1
+>>> beta = 1
+>>> alpha = alpha + 1
+>>> print(alpha)
+2
+>>> beta += 1
+>>> print(beta)
+2
+\end{verbatim}
+由此可见，像\verb|+=|这种运算符会计算自身改变自身值，还有\verb|-=, *=, /=|
+
+\begin{verbatim}
+>>> alpha = 10
+>>> alpha += 1
+>>> print(alpha)
+11
+>>> alpha -= 1
+>>> print(alpha)
+10
+>>> alpha *= 10
+>>> print(alpha)
+100
+>>> alpha /= 100
+>>> print(alpha)
+1.0
+\end{verbatim}
+Python所有的运算符都支持这种自赋值运算。比如，下一节介绍的位运算，就会有与运算符\verb|&|，
+与运算符的自赋值符号就是\verb|&=|
+\subsection{位运算}
+\indent 位运算是二进制层面的，所以在进行位运算时，Python会把输入的数转成二进制数，处理完再按原来
+的进制输出。
+
+
+位运算有与运算、或运算、异或运算、取反运算、左移运算、右移运算。
+
+
+\subsubsection{与运算}
+
+与运算是将两个操作数的每一位进行判断，如果都为1，对应的哪一位返回1，否则返回0
+
+
+比如：$81$ 与 $64$，$81$ 二进制数为 $(1010001)_2$，$64$ 二进制数为 $(1000000)_2$，
+得到了二进制数，就可以进行与运算了
+
+
+需要注意的是，如果位数不够，在前面补上零。\\
+
+
+
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+1 & 0 & 1 & 0 & 0 & 0 & 1\\\hline
+1 & 0 & 0 & 0 & 0 & 0 & 0\\\hline
+1 & 0 & 0 & 0 & 0 & 0 & 0\\\hline
+\end{tabular}
+
+
+再将结果转换成十进制数，得出$64$
+
+
+与的符号是\verb|&|，代码实现如下
+
+
+\begin{verbatim}
+>>> print(81 & 64)
+64
+\end{verbatim}
+
+与与运算相对应的是或运算
+
+\subsubsection{或运算}
+\indent 以上述的运算为例，这一次计算 $81$ 或 $64$
+
+
+同理，或运算需要将操作数转换成二进制数，如果这两个数的有一个是 $1$ 得出 $1$，否则得出$0$
+
+
+直接开始计算\\
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+1 & 0 & 1 & 0 & 0 & 0 & 1\\\hline
+1 & 0 & 0 & 0 & 0 & 0 & 0\\\hline
+1 & 0 & 1 & 0 & 0 & 0 & 1\\\hline
+\end{tabular}
+
+
+得出结果$81$
+
+
+或运算的符号为|，代码实现如下：
+
+\begin{verbatim}
+>>> print(81 | 64)
+81
+\end{verbatim}
+
+\subsubsection{异或运算}
+
+
+\indent 异或运算指的是两个二进制操作数，
+如果两数相同，返回$0$，否则返回$1$。
+
+
+比如 $81$ 异或 $64$\\
+
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+1 & 0 & 1 & 0 & 0 & 0 & 1\\\hline
+1 & 0 & 0 & 0 & 0 & 0 & 0\\\hline
+0 & 0 & 1 & 0 & 0 & 0 & 1\\\hline
+\end{tabular}
+
+
+$(10001)_2$十进制数为$17$，得出结果$17$
+
+
+异或的运算符为\verb|^|
+
+
+代码如下：
+\begin{verbatim}
+>>> print(81 ^ 64)
+17
+\end{verbatim}
+
+
+\subsubsection{取反运算}
+\indent 取反运算是取一个数的反码，再取补码
+，这个比较复杂，而且取反运算是一种自反
+运算\footnote{自反运算指的是其逆运算就是本身
+，比如取反取反27与27是相同的，也就是说取反两次
+会得到数字本身}，而且它只有一个操作数，使用取反
+只需要记住一个最基础的公式就可以了。
+
+
+取反的符号是\verb|~|，使用方法与之前的不同
+，是\verb|~a|，$~a = -(a+1)$，比如
+$~81$就等于$-82$
+
+
+代码如下：
+\begin{verbatim}
+>>> print(~27)
+-28
+\end{verbatim}
+
+\subsubsection{左移运算}
+\indent 左移的概念比较复杂，每左移一位
+，就是乘 $(100)_2$，相当于每左移一位，就是乘2
+
+
+左移符号为$>>$，比如$2 >> 2$就等于$8$，因为
+$2 \times 2 \times 2$等于8
+
+
+所以左移公式如下
+
+
+\begin{equation}
+a >> b = a \times 2 ^ b
+\end{equation}
+
+
+接下来看代码实例
+
+\begin{verbatim}
+>>> print(6 >> 2)
+24
+\end{verbatim}
+\subsubsection{右移运算}
+\indent 右移运算和左移相反，每左移一位，相当于除以$(100)_2$
+，就是$2$ 。
+
+
+注意，与普通除法不同，右移相当于整除运算。
+
+
+右移符号为$<<$，比如$2 << 1$就是$1$，因为$\frac{2}{2} = 1$
+
+
+所以右移公式如下
+
+
+\begin{equation}
+a << b = \frac{a}{2^b}
+\end{equation}
+
+
+接下来看代码示例
+\begin{verbatim}
+>>> print(8 >> 2)
+2
+\end{verbatim}
+
+\subsection{运算表达式}
+\indent 表达式其实就是数学里的综合算式，根据类型分为逻辑表达式以及算术表达式。
+
+
+逻辑表达式会在后面介绍，算术表达式其实读者已经有所接触，只是之前碰到的都是只有一个
+单项式的简单表达式，现实中表达式可能会很长很长
+
+
+比如这是一个公式：
+\begin{equation}
+R_s = {2GM}{c^2}
+\end{equation}
+
+
+这是史瓦西半径的计算公式，但是这种算式代码是完全识别不了的，对应的
+算术表达式如下：
+
+\begin{verbatim}
+R_s = 2 * G * M / (c * c)
+\end{verbatim}
+
+
+有几点需要注意：
+\begin{itemize}
+    \item 在算术表达式中，公式中的分数要写成除号\verb|/|
+    \item 算术表达式不能省略乘号
+    \item 算术表达式有严格的运算优先级，运算优先级见下一节
+    \item 根号之类的运算符要用函数math.sqrt替代
+\end{itemize}
+
+既然说道\verb|math.sqrt|了，那就浅谈一下\verb|math.sqrt|
+
+\subsubsection{sqrt}
+\indent Python中的根号不可能像数学一样使用符号替代，所以在Python的库里，有一个叫\verb|math|的
+库
+
+
+库可以理解为工具箱，库里有很多函数和类，函数和类就是工具。
+
+
+在库\verb|math|里有一个函数叫做\verb|sqrt|，它有一个参数：浮点型或者整数型
+
+
+然而工具箱是要自取的，库的导入使用\verb|import|关键字“自取”，比如以下代码就可以导入库
+
+\begin{verbatim}
+import math
+\end{verbatim}
+
+使用库里的函数要写\verb|库名.函数名(参数)|
+
+
+比如，我想计算$\sqrt{2}$，就可以使用以下代码
+
+\begin{verbatim}
+>>> import math
+>>> 
+>>> result = math.sqrt(2)
+>>> print(result)
+\end{verbatim}
+
+读者可能注意到，在导入库后面笔者加了一个空行，这是因为\verb|代码规范|，在大型项目中，这种
+规范非常重要，后面会讲解。
+\subsubsection{运算优先级}
+运算优先级表\footnote{此表的顺序是上高下底}如下：
+
+\begin{tabular}{|c|c|c|}
+运算符说明 & 运算符 & 优先级
+小括号     & ()    & 19
+索引      &  a[num]& 18
+属性访问   &x.attribute & 17
+乘方       & **    & 16
+取反       & ~     & 15
+符号运算   & +、-\footnote{需注意，这两个符号是正负，不是加减！} & 14
+乘除       & *、/、//、\verb|%| & 13
+加减       & +、-   & 12
+位移       & <<、>> & 11
+位与       & \verb|&| & 10
+异或       & ^      & 9
+位或       & |      & 8
+逻辑运算符  & ==、!=、>、<、>=、<= & 7
+is         & is、is not & 6
+成员运算符  & in、not in & 5
+逻辑非      & not        & 4
+逻辑与      & and        & 3
+逻辑或      & or         & 2
+逗号        & par1, par2 & 1
+ 
+\end{tabular}
+
+请注意，这张表不需要刻意记。因为有些运算符都不怎么用，有些运算符不是算术运算符，此外，里面的绝大多数
+运算符后面都会讲解。
+\section{字符之间的计算}
+\indent 其实Python的字符是支持运算的！
+
+
+与其他语言不同，Python的字符支持加、乘。
+\subsection{字符的加法}
+\indent 字符的加法就是拼接两个字符
+
+
+\begin{verbatim}
+>>> str1 = 'abc' # 字符1
+>>> str2 = 'def' # 字符2
+>>> str3 = str1 + str2 # 拼接字符
+>>> print(str3)
+abcdef
+\end{verbatim}
+\subsection{字符的乘法}
+\chapter{复合类型}
+\section{列表}
+\subsection{列表声明}
+\subsection{列表添加}
+\subsection{列表删除}
+\subsection{成员运算}
+\subsection{列表拼接}
+\section{元组}
+\subsection{元组的声明}
+\subsection{元组拆包}
+\subsection{元组的成员运算与拼接}
+\section{列表与元组的切片}
+\section{集合}
+\subsection{集合的声明}
+\subsection{集合的运算}
+\subsection{利用集合的特性做个实例}
+\section{字典}
+\subsection{字典的声明}
+\subsection{字典的添加}
+\subsection{字典的取值}
+\subsection{获取字典的键值表}
+\subsection{字典的代价}
+\chapter{分支结构}
+\section{if,elif,else}
+\subsection{逻辑表达式}
+\subsection{if}
+\subsection{elif}
+\subsection{else}
+\chapter{循环结构}
+\section{while}
+\subsection{死循环}
+\section{for}
+\subsection{循环语句}
+\section{break与continue}
+\chapter{代码复用}
+\section{函数}
+\subsection{不含参函数}
+\subsection{含参函数}
+\subsection{缺省参数}
+\subsection{关键字参数}
+\subsection{字典参数}
+\section{类}
+\subsection{类的声明}
+\subsection{类的实例化}
+\subsection{初始化特殊方法}
+\subsection{类的使用}
+\subsection{特殊方法表}
+\section{映射与过滤函数}
+\section{模块}
+\part{算法}
+\chapter{复杂度}
+\section{浅谈大O复杂度}
+\section{时间复杂度}
+\section{空间复杂度}
+\section{复杂度的排序}
+\chapter{排序}
+\section{冒泡排序}
+\section{插入排序}
+\section{选择排序}
+\section{快速排序}
+\chapter{递归}
+\section{递归是什么}
+\section{函数自我调用}
+\section{应用场景}
+\section{利用备忘录优化递归算法}
+\chapter{贪心}
+\section{贪心是什么}
+\section{相关实例}
+\section{贪心与动态规划}
+\chapter{动态规划}
+\section{01背包}
+\section{最长公共子序列}
+\section{最长公共子串}
+\chapter{人工智能算法KNN}
+\indent \verb|KNN|是一个人工智能算法，可以使用它计算相似度。
+
+
+这一章需要读者具备初中数学能力，里面会出现一些公式，不过不用慌张，请轻松的看完。我也会在
+这里给出\verb|KNN|工具包，在项目中使用即可
+\section{欧几里得距离公式}
+\section{余弦相似度}
+\section{实例成绩预测器}
+\subsection{模型设计}
+\subsection{算法描述}
+\subsection{代码实现}
+\part{工程应用}
+\chapter{网络框架}
+\section{Django与Flask}
+\section{Flask的下载}
+\section{Flask的应用}
+\chapter{网络爬虫}
+\section{网络爬虫的简介}
+\section{网络爬虫的库requests}
+\section{源代码解析库re}
+\section{反爬方法UserAgent}
+\section{更多领域}
+\chapter{科学计算}
+\section{matplotlib与numpy}
+\section{numpy}
+\section{使用matplotlib画图}
+\chapter{项目制作}
+\section{Pypi包制作}
+\section{利用资源}
+\section{PyInstaller发布}
+
+\end{document}
