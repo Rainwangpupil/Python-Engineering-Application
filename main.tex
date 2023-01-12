@@ -974,8 +974,51 @@ is         & is、is not & 6
 abcdef
 \end{verbatim}
 \subsection{字符的乘法}
+\indent 字符的乘法其实就是多次叠放字符，代码实例如下：
+
+\begin{verbatim}
+>>> str1 = 'abc' # 字符
+>>> num = 5      # 重复次数
+>>> print(str1 * num)
+abcabcabcabcabc
+\end{verbatim}
+
+\subsection{强制类型转换}
+\indent 有时候，我们需要将一个字符型转换成浮点型或整数型，这时候可以借助\verb|强制类型转换|，
+此时，类型标识符的行为更像函数\footnote{其实也不是函数，是一种较为复杂的数据结构：类}。它会返
+一个值，表示转换后的值，代码实例如下：
+
+\begin{verbatim}
+>>> str1 = '50.0'
+>>> float(str1) # 转换成浮点型
+50.0
+>>> type(float(str1)) # 数据类型判断
+<class 'float'>
+>>> type(str1)
+<class 'str'>
+>>> int(float(str1)) # 需要注意，字符型不能直接转换成整数型
+50
+>>> type(int(float(str1)))
+<class 'int'>
+>>> str(2.0)
+2.0
+>>> str(2)
+2
+>>> type(str(2))
+<class 'int'>
+\end{verbatim}
 \chapter{复合类型}
+\indent 与数据类型不同，复合类型是数据结构。一个数据结构可以存放大量数据。在不同语言中，数据结构
+的要求也大不相同，比如，C++中，一个数据结构只能存放一种数据类型，Java也是如此。在不同语言中，数据
+结构的称呼也大不相同，C++有映射、数组、集合，Python有元组、列表、字典、集合……
+
+
+当然，大部分语言的数据结构的底层原理是相同的。比如映射和字典都是基于散列表\footnote{有些人习惯叫成哈希表}。
+
+
+不同的数据结构也有各自的优点与缺点。比如映射和字典的内存占用过高，但是操作时间很短。
 \section{列表}
+\indent 列表可以理解为其他语言的数组。
 \subsection{列表声明}
 \subsection{列表添加}
 \subsection{列表删除}
